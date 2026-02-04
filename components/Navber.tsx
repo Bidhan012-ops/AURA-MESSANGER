@@ -14,7 +14,7 @@ const Navber = () => {
 
     const handleSignOut = async () => {
       await signOut({redirect:false});
-      router.replace('/signin');
+      router.replace('/');
     }
 
   return (
