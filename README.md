@@ -47,52 +47,53 @@ Navigate to `http://localhost:3000` to access the application.
 The following diagram illustrates the complete data flow, authentication procedures, and messaging mechanics of the Aura Messenger platform:
 
 ```mermaid
-sequenceDiagram
-    actor AU as Anonymous User
-    actor U as Registered User
-    participant C as Next.js Client
-    participant M as NextAuth (Middleware)
-    participant A as API Routes
-    participant DB as MongoDB
-    participant R as Resend (Email Service)
+graph TD
+    classDef default fill:#111827,stroke:#374151,stroke-width:2px,color:#f3f4f6;
+    classDef user fill:#000000,stroke:#f59e0b,stroke-width:2px,color:#f3f4f6;
+    classDef process fill:#1f2937,stroke:#374151,stroke-width:1px,color:#f3f4f6;
+    classDef external fill:#1e3a8a,stroke:#3b82f6,stroke-width:1px,color:#f3f4f6;
+    classDef database fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#f3f4f6;
 
-    %% Authentication Flow
-    rect rgb(20, 25, 30)
-    note right of U: 1. Registration & Verification Flow
-    U->>C: Submits Signup Form (Username, Email, Password)
-    C->>A: POST /api/sign-up
-    A->>DB: Create Unverified User Document
-    A->>R: Trigger Verification Email (OTP)
-    R-->>U: Receives Verification Code via Email
-    U->>C: Enters Verification Code
-    C->>A: POST /api/verifycode
-    A->>DB: Mark User as Verified
+    subgraph Security ["Security & Access Control (NextAuth)"]
+        direction TB
+        Auth[Sign In / Sign Up]:::process
+        MongoDBUsers[(MongoDB Users)]:::database
+        Resend[Resend API - OTP Email]:::external
+        
+        Auth -->|Triggers Verification| Resend
+        Resend -->|Sends Code| Auth
+        Auth -->|Authenticates| MongoDBUsers
     end
 
-    %% Session & Dashboard
-    rect rgb(20, 30, 25)
-    note right of U: 2. Secure Session Flow
-    U->>C: Login (Credentials)
-    C->>M: NextAuth JWT Authentication
-    M->>DB: Validate Credentials (bcrypt)
-    M-->>C: Issue __Secure-authjs Session Cookie
-    U->>C: Visits /dashboard
-    C->>A: Fetch Messages
-    A->>DB: Query User Messages
-    DB-->>C: Return Message Array
+    User((User)):::user
+    User -- Authenticates --> Auth
+
+    subgraph Dashboard ["Workspace & Dashboard"]
+        direction TB
+        DashPortal[Dashboard Portal]:::process
+        Toggle[Toggle Message Status]:::process
+        ViewMessages[Fetch Encrypted Messages]:::process
+        
+        DashPortal --> Toggle
+        DashPortal --> ViewMessages
     end
 
-    %% Anonymous Messaging Flow
-    rect rgb(30, 20, 25)
-    note right of AU: 3. Anonymous Feedback Flow
-    AU->>C: Visits /u/[username]
-    C->>A: Check if user accepts messages
-    A->>DB: Query User Status
-    DB-->>C: Returns Status
-    AU->>C: Submits Message
-    C->>A: POST /api/send-message
-    A->>DB: Save Message to User Document
+    Auth == Validated Session ==> DashPortal
+    Toggle -->|Updates Accept Status| MongoDBUsers
+    MongoDBUsers -.->|Returns Data| ViewMessages
+
+    subgraph PublicInterface ["Public Message Interface"]
+        direction TB
+        PublicURL[Public Profile /u/username]:::process
+        SendMsg[POST /api/send-message]:::process
+        
+        PublicURL -->|Check if user accepts| MongoDBUsers
+        PublicURL --> SendMsg
     end
+
+    AnonUser((Anonymous User)):::user
+    AnonUser -- Visits Link --> PublicURL
+    SendMsg -->|Saves Message| MongoDBUsers
 ```
 
 ## 💻 Tech Stack
