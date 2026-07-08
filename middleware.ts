@@ -1,12 +1,14 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
+import { NextResponse } from "next/server";
+import { auth } from "@/app/api/auth/[...nextauth]/option";
 
-export async function middleware(request: NextRequest) {
-  const token = await getToken({ req: request, secret: process.env.AUTH_SECRET });
+export default auth((request) => {
+  const token = request.auth;
   const { pathname } = request.nextUrl;
-  console.log("Middleware token:", token);
+  
+  console.log("Middleware token:", token ? "Found" : "Null");
   console.log("Middleware pathname:", pathname);
-  if (token && (pathname.startsWith("/login") || pathname.startsWith("/signup"))) {
+  
+  if (token && (pathname.startsWith("/login") || pathname.startsWith("/signin") || pathname.startsWith("/signup"))) {
     console.log("Redirecting to dashboard from middleware");
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
@@ -14,7 +16,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
   return NextResponse.next();
-}
+});
 export const config = {
   matcher: [
     '/signin',
