@@ -178,11 +178,14 @@ export default function AccountPage() {
 
                                 {/* Security Score Widget */}
                                 <div className="glass-panel rounded-xl p-6 flex-1 flex flex-col justify-center items-center text-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
-                                    <div className="w-24 h-24 rounded-full border-4 border-[#1a1c1e] relative flex items-center justify-center mb-4">
-                                        <svg className="absolute inset-0 w-full h-full -rotate-90">
-                                            <circle className="transition-all duration-1000" cx="48" cy="48" fill="none" r="44" stroke="#4edea3" strokeDasharray="276" strokeDashoffset="27" strokeWidth="4"></circle>
+                                    <div className="w-24 h-24 relative flex items-center justify-center mb-4">
+                                        <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 96 96">
+                                            {/* Background track */}
+                                            <circle cx="48" cy="48" fill="none" r="44" stroke="#1a1c1e" strokeWidth="4"></circle>
+                                            {/* Progress indicator */}
+                                            <circle className="transition-all duration-1000" cx="48" cy="48" fill="none" r="44" stroke="#4edea3" strokeDasharray="276" strokeDashoffset="27" strokeWidth="4" strokeLinecap="round"></circle>
                                         </svg>
-                                        <span className="font-['Plus_Jakarta_Sans'] text-[32px] leading-[40px] tracking-[-0.01em] text-white font-bold">90<span className="text-sm text-gray-400">%</span></span>
+                                        <span className="font-['Plus_Jakarta_Sans'] text-[32px] leading-[40px] tracking-[-0.01em] text-white font-bold relative z-10">90<span className="text-sm text-gray-400">%</span></span>
                                     </div>
                                     <h3 className="font-['Plus_Jakarta_Sans'] text-[14px] leading-[20px] tracking-[0.05em] font-semibold text-white mb-1">Security Rating</h3>
                                     <p className="font-['Plus_Jakarta_Sans'] text-[12px] leading-[16px] font-medium text-gray-400">Optimal Configuration</p>

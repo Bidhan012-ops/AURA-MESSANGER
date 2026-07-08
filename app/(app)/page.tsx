@@ -78,7 +78,7 @@ export default function AuraMessengerPage() {
       <div className="dark min-h-screen w-full font-['Plus_Jakarta_Sans'] text-on-surface bg-[#050505] antialiased selection:bg-primary-container selection:text-on-primary-container" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvd-Bl3CRg2NpCIUsbStpfGAW2RVaew4PbbwnQYIxrB76CYZxmtWr6Uvvqep2Qvex8LC9PvxEAM9eWPSZXPWw6AEt_0_EK6TwsMB9NLUiAnDgVpNY105JbmCGIYchvkvkXZDhB9Klc769A-2cW796YbPaaXtuzdGZFiaJraATLijfPekjtgkgzEZ6pMx5ZeLAkmrgoJzqdOQs14TwnNDlm0QEnf8JRtt0sumV7kVVxP0j8afrPj5xlg')", backgroundSize: "cover", backgroundAttachment: "fixed", backgroundPosition: "center" }}>
         {/* Top Navigation */}
         <nav className="fixed top-0 w-full z-50 backdrop-blur-[64px] dark:bg-surface/30 border-b bg-surface/10 border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
-          <div className="flex justify-between items-center px-10 py-4 w-full max-w-screen-2xl mx-auto">
+          <div className="flex justify-between items-center px-4 md:px-10 py-4 w-full max-w-screen-2xl mx-auto">
             {/* Brand */}
             <div className="flex items-center gap-2">
               <img alt="Aura Messenger Logo" className="w-8 h-8 rounded" src="https://lh3.googleusercontent.com/aida/AP1WRLvgY66f_YNsPWOQzuaRQeeXEnC0luhKw72qfsgV4yRuUbp1Djs7Dl_bIgESa3UlndcckN6GWXqJqfmpj7X6Zz5nOuEd-NXytAH_v65xdpsCNBa5yyHvnigZBFTmVFM_Y1fFxpwweqhJK00AukbJOA2JlhouHxEaZ35wBQ7dIOaZBXTjYkoIa9vECyaEsIzYhGbg4UovUXwOpp9JA-6uigeK5S_nx_5HXPBY8sVbbOxVQqvbKyDYcs9Ds1XJ" />
