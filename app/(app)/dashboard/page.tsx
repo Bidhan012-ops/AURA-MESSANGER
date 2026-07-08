@@ -92,8 +92,11 @@ const Page = () => {
   };
 
   if (!session || !session.user) return (
-    <div className="flex items-center justify-center min-h-[60vh] bg-[#050505] text-[#e0e3e5]">
+    <div className="flex flex-col gap-4 items-center justify-center min-h-[60vh] bg-[#050505] text-[#e0e3e5]">
       <p className="font-['Plus_Jakarta_Sans'] text-gray-400">Please login to view this page.</p>
+      <Link href="/" className="px-6 py-2 bg-[#4edea3] text-[#002113] rounded-lg font-['Plus_Jakarta_Sans'] font-semibold hover:bg-[#4edea3]/90 transition-colors">
+          Back to Home
+      </Link>
     </div>
   );
 
