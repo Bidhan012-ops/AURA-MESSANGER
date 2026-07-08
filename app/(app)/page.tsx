@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import Script from 'next/script';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 export default function AuraMessengerPage() {
   const router = useRouter();
 
@@ -237,7 +238,7 @@ export default function AuraMessengerPage() {
               <a className="font-['Plus_Jakarta_Sans'] text-[12px] leading-[16px] font-medium text-outline dark:text-outline hover:text-primary-fixed-dim transition-colors" href="#">Terms of Service</a>
               <a className="font-['Plus_Jakarta_Sans'] text-[12px] leading-[16px] font-medium text-outline dark:text-outline hover:text-primary-fixed-dim transition-colors" href="#">Privacy Policy</a>
               <a className="font-['Plus_Jakarta_Sans'] text-[12px] leading-[16px] font-medium text-outline dark:text-outline hover:text-primary-fixed-dim transition-colors" href="#">Security Whitepaper</a>
-              <a className="font-['Plus_Jakarta_Sans'] text-[12px] leading-[16px] font-medium text-outline dark:text-outline hover:text-primary-fixed-dim transition-colors" href="#">Contact Support</a>
+              <Link className="font-['Plus_Jakarta_Sans'] text-[12px] leading-[16px] font-medium text-outline dark:text-outline hover:text-primary-fixed-dim transition-colors" href="contactSupport">Contact Support</Link>
             </div>
           </div>
         </footer>
