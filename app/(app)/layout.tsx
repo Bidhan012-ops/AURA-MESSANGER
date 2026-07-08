@@ -24,9 +24,9 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-        <SessionProvider>
-        <Navber/>
-        {children}
-        </SessionProvider>
+    <SessionProvider>
+      {/* <Navber/> */}
+      {children}
+    </SessionProvider>
   );
 }

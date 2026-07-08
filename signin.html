@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aura Messenger - Secure Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "primary": "#4edea3",
+                        "primary-container": "#10b981",
+                        "outline-variant": "#3c4a42",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#233144",
+                        "inverse-primary": "#006c49",
+                        "inverse-on-surface": "#2d3133",
+                        "surface-container-low": "#191c1e",
+                        "tertiary-fixed": "#b0f0d6",
+                        "tertiary": "#95d3ba",
+                        "surface": "#101415",
+                        "on-secondary-container": "#abb9d2",
+                        "outline": "#86948a",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#363a3b",
+                        "on-primary-fixed": "#002113",
+                        "secondary-container": "#3c4a5e",
+                        "secondary": "#b9c7e0",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-dim": "#101415",
+                        "on-background": "#e0e3e5",
+                        "surface-container-lowest": "#0b0f10",
+                        "surface-container-highest": "#323537",
+                        "on-error": "#690005",
+                        "surface-container": "#1d2022",
+                        "on-surface": "#e0e3e5",
+                        "secondary-fixed": "#d5e3fd",
+                        "tertiary-container": "#71af97",
+                        "on-tertiary-fixed-variant": "#0b513d",
+                        "on-primary": "#003824",
+                        "on-tertiary-container": "#004231",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "on-surface-variant": "#bbcabf",
+                        "surface-tint": "#4edea3",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "on-primary-container": "#00422b",
+                        "inverse-surface": "#e0e3e5",
+                        "surface-variant": "#323537",
+                        "on-primary-fixed-variant": "#005236",
+                        "background": "#101415",
+                        "surface-container-high": "#272a2c",
+                        "on-tertiary-fixed": "#002117",
+                        "error-container": "#93000a",
+                        "on-tertiary": "#003829"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-padding-mobile": "20px",
+                        "container-padding-desktop": "40px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-xl-mobile": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-xl-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #050505; /* Absolute Black */
+            color: #e0e3e5;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .glass-panel {
+            background: rgba(16, 20, 21, 0.4);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(16, 185, 129, 0.2); /* #10b981 primary-container with opacity */
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-input {
+            background: rgba(36, 42, 44, 0.3); /* recessed trough */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.4);
+            border-left: 2px solid #4edea3; /* primary color */
+            background: rgba(36, 42, 44, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #4edea3;
+            color: #002113; /* high contrast */
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 15px rgba(78, 222, 163, 0.4); /* bloom effect */
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(16, 20, 21, 0.4);
+            border: 1px solid rgba(78, 222, 163, 0.3);
+            color: #4edea3;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(78, 222, 163, 0.1);
+            border-color: rgba(78, 222, 163, 0.6);
+        }
+
+        /* Full screen background image */
+        .bg-technical {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLupwhd6nsbKIKfPeQ1gPS9VGBkRRdxUUeubg32MhpGMNz4_0HyXgJQUTKn-9BqWApEjMPXBWYD_CfFSIRMlQ_qIzUjTDFDifX-1ZzepUfm3qDrDu-UsbVimunR_wMzzmky6cGouOIrb2WtP-E4SunLmTlPTnOiidijC5sD73SNb8TGnIrpCdum9dwM06wfKk8GANTJjdejUuGA-u4x8apKu6rgbsu_CGhp8J_99AeP7SLKHY5OhrbgRwj4');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6; /* Dimming the background to let the UI pop */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+<!-- Background Image -->
+<div class="bg-technical"></div>
+<!-- TopNavBar (Suppressed as per rules for linear/transactional intent - Login) -->
+<!-- However, we can keep a minimal brand anchor if desired, but strict adherence suggests suppression to prioritize canvas. 
+         Wait, the prompt says "TopNavBar... navigation shell if the page intent is: Linear/Transactional... Automatic Suppression: You MUST exclude the navigation shell". 
+         I will NOT render the TopNavBar. -->
+<!-- Main Canvas -->
+<main class="flex-grow flex items-center justify-center p-container-padding-mobile md:p-container-padding-desktop relative z-10">
+<!-- Architected Glass Login Panel -->
+<div class="glass-panel w-full max-w-[480px] rounded-xl p-8 md:p-10 flex flex-col gap-8 relative overflow-hidden">
+<!-- Subtle accent glow inside the card top edge -->
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-50"></div>
+<!-- Header / Brand -->
+<div class="flex flex-col gap-2 items-center text-center">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center border border-white/10 mb-2 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1; font-size: 28px;">lock</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Aura Messenger</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Secure access protocol</p>
+</div>
+<!-- Form -->
+<form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
+<!-- Email Input -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface flex justify-between" for="email">
+<span>Identifier</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline-variant select-none">person</span>
+<input class="glass-input w-full h-12 pl-10 pr-4 rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline-variant/60" id="email" placeholder="Enter your Monogram or Email" required="" type="text"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface flex justify-between" for="password">
+<span>Passphrase</span>
+<a class="text-primary hover:text-primary-fixed transition-colors" href="#">Recover</a>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline-variant select-none">key</span>
+<input class="glass-input w-full h-12 pl-10 pr-10 rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline-variant/60 tracking-widest" id="password" placeholder="••••••••••••" required="" type="password"/>
+<button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-outline-variant hover:text-on-surface transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined select-none" id="visibility-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-4 mt-2">
+<button class="btn-primary w-full h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2" type="submit">
+                        Authenticate <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<div class="flex items-center gap-4 py-2">
+<div class="h-[1px] bg-white/5 flex-grow"></div>
+<span class="font-label-sm text-label-sm text-outline-variant uppercase tracking-widest">Or</span>
+<div class="h-[1px] bg-white/5 flex-grow"></div>
+</div>
+<button class="btn-secondary w-full h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">fingerprint</span> Secure Monogram
+                    </button>
+</div>
+</form>
+<!-- Footer links inside card -->
+<div class="text-center mt-2">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    New to Aura? <a class="text-primary hover:text-primary-fixed transition-colors font-label-md text-label-md" href="#">Request Node Access</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Footer (Suppressed for Transactional Intent as per Canvas priority, but if needed, keeping it out keeps focus on login) -->
+<script>
+        function togglePassword() {
+            const pwdInput = document.getElementById('password');
+            const icon = document.getElementById('visibility-icon');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                icon.textContent = 'visibility_off';
+            } else {
+                pwdInput.type = 'password';
+                icon.textContent = 'visibility';
+            }
+        }
+    </script>
+</body></html>

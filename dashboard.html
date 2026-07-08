@@ -1,0 +1,345 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Aura Messenger - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#bbcabf",
+                        "on-tertiary-fixed-variant": "#0b513d",
+                        "inverse-on-surface": "#2d3133",
+                        "secondary": "#b9c7e0",
+                        "primary-fixed": "#6ffbbe",
+                        "secondary-fixed": "#d5e3fd",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#002117",
+                        "primary": "#4edea3",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "tertiary-container": "#71af97",
+                        "surface-container": "#1d2022",
+                        "surface-tint": "#4edea3",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "surface-container-low": "#191c1e",
+                        "surface-container-high": "#272a2c",
+                        "tertiary-fixed-dim": "#95d3ba",
+                        "on-secondary-container": "#abb9d2",
+                        "inverse-surface": "#e0e3e5",
+                        "surface-container-lowest": "#0b0f10",
+                        "surface-dim": "#101415",
+                        "on-surface": "#e0e3e5",
+                        "tertiary-fixed": "#b0f0d6",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "primary-fixed-dim": "#4edea3",
+                        "error-container": "#93000a",
+                        "tertiary": "#95d3ba",
+                        "outline-variant": "#3c4a42",
+                        "on-tertiary-container": "#004231",
+                        "on-primary-container": "#00422b",
+                        "inverse-primary": "#006c49",
+                        "surface-container-highest": "#323537",
+                        "on-secondary": "#233144",
+                        "error": "#ffb4ab",
+                        "background": "#101415",
+                        "surface-bright": "#363a3b",
+                        "surface": "#101415",
+                        "outline": "#86948a",
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary-container": "#3c4a5e",
+                        "surface-variant": "#323537",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#002113",
+                        "primary-container": "#10b981",
+                        "on-background": "#e0e3e5",
+                        "on-tertiary": "#003829",
+                        "on-primary": "#003824"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-padding-desktop": "40px",
+                        "container-padding-mobile": "20px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-xl-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #050505;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        
+        .glass-panel {
+            background: rgba(16, 20, 21, 0.6);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        }
+        
+        .glass-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-input:focus {
+            border-color: rgba(255, 255, 255, 0.4);
+            border-left: 2px solid #4edea3;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: #4edea3;
+            color: #003824;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 0 15px rgba(78, 222, 163, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(16, 20, 21, 0.6);
+            border: 1px solid #4edea3;
+            color: #4edea3;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(78, 222, 163, 0.1);
+            box-shadow: 0 0 10px rgba(78, 222, 163, 0.2);
+        }
+
+        /* Custom Scrollbar for aesthetic */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #323537; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4edea3; 
+        }
+    </style>
+</head>
+<body class="text-on-surface min-h-screen flex font-body-md antialiased selection:bg-primary/30 selection:text-primary">
+<!-- Top Navigation (Mobile Only) -->
+<nav class="md:hidden glass-panel fixed top-0 w-full z-50 h-16 flex justify-between items-center px-container-padding-mobile border-b border-white/10 shadow-none transition-all duration-200 active:scale-95">
+<div class="font-headline-md text-headline-md font-bold text-primary">Aura Messenger</div>
+<div class="flex gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">account_circle</span></button>
+</div>
+</nav>
+<!-- Side Navigation (Desktop) -->
+<aside class="glass-panel h-full w-64 hidden md:flex flex-col fixed left-0 top-0 pt-16 z-40 border-r border-white/10 shadow-none">
+<div class="px-6 py-8 mb-4 border-b border-white/5">
+<div class="flex items-center gap-4 mb-2">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center border border-white/10 overflow-hidden relative">
+<!-- Placeholder avatar -->
+<div class="bg-cover bg-center w-full h-full absolute inset-0 opacity-50 mix-blend-luminosity" data-alt="A highly detailed close-up portrait of a futuristic user avatar. The face is partially obscured by neon green geometric overlays and soft digital noise. Lighting is dramatic, coming from a bright, unseen screen casting a harsh white light. The overall mood is cyberpunk and anonymous, with a palette of deep blacks, soft grays, and electric emerald green accents." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBf7BGUJ4r2Sup5WmHO18b-7O0bbcWkNzbey9zPHZMqSSr-k-uNjHc1qzkcMfF9xtvOAb64eis-Zm1Lm1vccpsQXOaNA9JSUB-ldBmSDE-vckMMDRgMoUPnxfUvAmgvdSDgeBcFD4KsnDy_lvurJsCaCc-6Yjyn4fl1DPP8YGY26oF8KFLAoQo3lS7bAwYQPIHMFEkAyvS34oaCLb84_sSbFMDzyLFM7u2UjBvz4mJGRIEDpWTD6WH8pA')"></div>
+<span class="material-symbols-outlined text-primary relative z-10">person</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight">Aura Messenger</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Anonymous Feedback</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-stack-md text-primary bg-primary-container/10 border-l-2 border-primary px-4 py-3 rounded-r-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+
+<a class="flex items-center gap-stack-md text-on-surface-variant px-4 py-3 rounded-lg hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Account</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<button class="w-full btn-secondary font-label-md text-label-md py-2 px-4 rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">logout</span> Sign Out
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 pt-20 md:pt-16 px-container-padding-mobile md:px-container-padding-desktop pb-24 md:pb-12 max-w-[1400px] mx-auto">
+<!-- Header Area -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-stack-lg border-b border-white/5 pb-8 relative">
+<div class="absolute -top-32 -left-32 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary text-3xl">grid_view</span>
+<h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">Dashboard</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your anonymous messages and settings.</p>
+</div>
+<button class="btn-secondary font-label-md text-label-md py-2 px-4 rounded-lg flex items-center gap-2 self-start md:self-auto w-fit">
+<span class="material-symbols-outlined text-sm">refresh</span> Refresh
+            </button>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter relative z-10">
+<!-- Left Column: Controls & Info -->
+<div class="flex flex-col gap-gutter lg:col-span-12">
+<!-- Public Link Panel -->
+<section class="glass-panel rounded-xl p-8 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-[50px] -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span> Your Public Link
+                    </h3>
+<div class="flex flex-col sm:flex-row gap-4 items-center">
+<div class="glass-input flex-1 w-full rounded-lg px-4 py-3 font-body-md text-on-surface flex items-center gap-3 cursor-text">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">link</span>
+<span class="truncate select-all text-secondary-fixed">http://aura.node/u/bidhan012</span>
+</div>
+<button class="btn-primary font-label-md text-label-md py-3 px-6 rounded-lg flex items-center justify-center gap-2 w-full sm:w-auto shrink-0 shadow-[0_0_10px_rgba(78,222,163,0.2)]">
+<span class="material-symbols-outlined text-sm">content_copy</span> Copy Link
+                        </button>
+</div>
+</section>
+<!-- Settings Toggle Panel -->
+<section class="glass-panel rounded-xl p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1 flex items-center gap-2">
+                            Accepting Messages
+                        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">People can currently send you anonymous messages via your public link.</p>
+</div>
+<!-- Custom Toggle Switch -->
+<label class="flex items-center cursor-pointer gap-3 glass-panel px-4 py-2 rounded-full">
+<span class="font-label-md text-label-md text-on-surface">Enabled</span>
+<div class="relative">
+<input checked="" class="sr-only" type="checkbox">
+<div class="block bg-surface-container-high w-14 h-8 rounded-full border border-white/10 transition-colors bg-primary/20"></div>
+<div class="dot absolute left-1 top-1 bg-primary w-6 h-6 rounded-full transition-transform transform translate-x-6 shadow-[0_0_8px_rgba(78,222,163,0.8)] flex items-center justify-center">
+<div class="w-2 h-2 bg-on-primary rounded-full"></div>
+</div>
+</div>
+</label>
+</section>
+<!-- Messages Feed -->
+<section class="mt-8">
+<div class="flex justify-between items-end mb-6 pb-2 border-b border-white/5">
+<h3 class="font-headline-md text-headline-md text-on-surface">Your Messages</h3>
+<span class="font-label-sm text-label-sm bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20 flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span> 1 Total
+                        </span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Message Card -->
+<article class="glass-panel rounded-xl p-6 relative group transition-all duration-300 hover:border-white/20">
+<!-- Left accent border -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start gap-4">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface mb-4 leading-relaxed pr-8">
+                                        "Describe your ideal peaceful escape – real or imagined."
+                                    </p>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<time class="font-label-sm text-label-sm tracking-wider uppercase opacity-70">Wed Jul 08 2026 10:56:41 GMT+0530</time>
+</div>
+</div>
+<button aria-label="Delete message" class="w-10 h-10 rounded-full bg-error-container/20 text-error border border-error/20 flex items-center justify-center hover:bg-error hover:text-on-error transition-colors shrink-0 tooltip-trigger">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</article>
+<!-- Empty State Placeholder (Hidden by default, shown to demonstrate style if no messages) -->
+<div class="hidden glass-panel rounded-xl p-12 flex flex-col items-center justify-center text-center border-dashed border-white/20">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4 opacity-50">inbox</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">No messages yet</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">Share your public link to start receiving anonymous feedback securely.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Context/Stats (Optional high-end addition based on Bento pattern request) -->
+
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden glass-panel fixed bottom-0 left-0 w-full h-16 flex justify-around items-center z-50 border-t border-white/10 shadow-none pb-safe">
+<a class="flex flex-col items-center justify-center text-primary active:scale-90 transition-transform p-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</a>
+
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform p-2" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Account</span>
+</a>
+</nav>
+<script>
+        // Simple interactivity for the toggle switch (visual only)
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleInput = document.querySelector('input[type="checkbox"]');
+            const toggleDot = document.querySelector('.dot');
+            const toggleBg = toggleInput.nextElementSibling;
+            const toggleLabel = toggleInput.parentElement.previousElementSibling;
+
+            toggleInput.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    toggleDot.classList.add('translate-x-6');
+                    toggleBg.classList.add('bg-primary/20');
+                    toggleBg.classList.remove('bg-surface-container-high');
+                    toggleLabel.textContent = 'Enabled';
+                } else {
+                    toggleDot.classList.remove('translate-x-6');
+                    toggleBg.classList.remove('bg-primary/20');
+                    toggleBg.classList.add('bg-surface-container-high');
+                    toggleLabel.textContent = 'Disabled';
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

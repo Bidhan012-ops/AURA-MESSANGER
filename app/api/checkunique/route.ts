@@ -2,7 +2,6 @@ import {z} from 'zod';
 import { dbConnect } from '@/lib/dbConnect';
 import UserModel from '@/model/user';
 import { NextRequest, NextResponse } from 'next/server';
-import { ApiResponse } from '@/types/Apiresponce';
 import { UsernameSchema } from '@/schema/signupSchema';
 const usernametestschema = z.object({
     username: UsernameSchema

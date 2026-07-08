@@ -1,4 +1,3 @@
-import { resend } from "@/lib/resend";
 import { EmailTemplate } from "@/emails/email-template";
 import { ApiResponse } from "@/types/Apiresponce";
 import * as nodemailer from 'nodemailer';

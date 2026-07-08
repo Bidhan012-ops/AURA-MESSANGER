@@ -1,0 +1,330 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GhostProtocol - Security Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#0b0f10",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "on-primary": "#003824",
+                        "secondary-fixed": "#d5e3fd",
+                        "inverse-primary": "#006c49",
+                        "on-secondary": "#233144",
+                        "surface-container": "#1d2022",
+                        "surface-bright": "#363a3b",
+                        "inverse-on-surface": "#2d3133",
+                        "surface-container-highest": "#323537",
+                        "primary": "#4edea3",
+                        "on-surface": "#e0e3e5",
+                        "tertiary-fixed-dim": "#95d3ba",
+                        "on-primary-fixed": "#002113",
+                        "tertiary-container": "#71af97",
+                        "surface-container-low": "#191c1e",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "tertiary-fixed": "#b0f0d6",
+                        "outline": "#86948a",
+                        "secondary": "#b9c7e0",
+                        "on-tertiary-fixed-variant": "#0b513d",
+                        "inverse-surface": "#e0e3e5",
+                        "outline-variant": "#3c4a42",
+                        "on-tertiary-container": "#004231",
+                        "on-tertiary": "#003829",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#95d3ba",
+                        "surface-container-high": "#272a2c",
+                        "surface": "#101415",
+                        "surface-variant": "#323537",
+                        "secondary-container": "#3c4a5e",
+                        "on-background": "#e0e3e5",
+                        "primary-container": "#10b981",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#4edea3",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-dim": "#101415",
+                        "on-secondary-container": "#abb9d2",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#bbcabf",
+                        "on-primary-fixed-variant": "#005236",
+                        "background": "#101415",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-primary-container": "#00422b",
+                        "on-tertiary-fixed": "#002117"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "stack-lg": "32px",
+                        "container-padding-desktop": "40px",
+                        "gutter": "24px",
+                        "container-padding-mobile": "20px",
+                        "unit": "8px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px"
+                    },
+                    fontFamily: {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-xl-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "headline-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "headline-xl-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body {
+            background-color: #050505;
+            color: #e0e3e5;
+        }
+        
+        .glass-panel {
+            background: rgba(16, 20, 21, 0.4);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .accent-glow {
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        }
+        
+        .tech-grid {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+            background-position: center center;
+        }
+
+        .input-trough {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .input-trough:focus-within {
+            border-color: rgba(255, 255, 255, 0.4);
+            border-left: 2px solid #4edea3;
+        }
+
+        .btn-primary {
+            background-color: #4edea3;
+            color: #003824;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 0 15px rgba(78, 222, 163, 0.4);
+        }
+        
+        .btn-danger {
+            background-color: rgba(255, 180, 171, 0.1);
+            color: #ffb4ab;
+            border: 1px solid rgba(255, 180, 171, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-danger:hover {
+            background-color: rgba(255, 180, 171, 0.2);
+            box-shadow: 0 0 15px rgba(255, 180, 171, 0.2);
+        }
+
+        /* Material Icons Setup */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased min-h-screen flex overflow-hidden relative">
+<!-- Background Texture -->
+<div class="absolute inset-0 z-0 pointer-events-none tech-grid" data-alt="A dark, desaturated technical grid background with subtle geometric patterns and faint glowing intersections, evoking an industrial cyber-security interface. Deep absolute black canvas with very faint emerald green grid lines." style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLupwhd6nsbKIKfPeQ1gPS9VGBkRRdxUUeubg32MhpGMNz4_0HyXgJQUTKn-9BqWApEjMPXBWYD_CfFSIRMlQ_qIzUjTDFDifX-1ZzepUfm3qDrDu-UsbVimunR_wMzzmky6cGouOIrb2WtP-E4SunLmTlPTnOiidijC5sD73SNb8TGnIrpCdum9dwM06wfKk8GANTJjdejUuGA-u4x8apKu6rgbsu_CGhp8J_99AeP7SLKHY5OhrbgRwj4'); background-size: cover; background-position: center; opacity: 0.15;"></div>
+<div class="absolute inset-0 z-0 pointer-events-none tech-grid"></div>
+<!-- Ambient Glow -->
+<div class="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-primary/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+<!-- SideNavBar (Desktop) -->
+<aside class="hidden md:flex flex-col fixed left-0 top-0 h-full w-64 border-r border-white/10 bg-surface/80 backdrop-blur-[32px] z-20">
+<div class="p-6 border-b border-white/10 flex items-center gap-3">
+<img src="https://lh3.googleusercontent.com/aida/AP1WRLvgY66f_YNsPWOQzuaRQeeXEnC0luhKw72qfsgV4yRuUbp1Djs7Dl_bIgESa3UlndcckN6GWXqJqfmpj7X6Zz5nOuEd-NXytAH_v65xdpsCNBa5yyHvnigZBFTmVFM_Y1fFxpwweqhJK00AukbJOA2JlhouHxEaZ35wBQ7dIOaZBXTjYkoIa9vECyaEsIzYhGbg4UovUXwOpp9JA-6uigeK5S_nx_5HXPBY8sVbbOxVQqvbKyDYcs9Ds1XJ" alt="Aura Messenger Logo" class="w-8 h-8 object-contain">
+<span class="font-headline-md text-headline-md text-primary font-bold tracking-tight">Aura Messenger</span>
+</div>
+
+<nav class="flex-1 py-6 px-4 space-y-2">
+
+
+
+
+<!-- Active Tab -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-primary font-bold border-l-2 border-primary bg-primary/5 transition-transform active:scale-[0.98]" href="#"><span class="material-symbols-outlined icon-fill">account_circle</span><span class="font-label-md text-label-md">Account</span></a>
+</nav>
+
+</aside>
+<!-- TopNavBar (Mobile) -->
+<header class="flex md:hidden justify-between items-center px-4 h-16 w-full fixed top-0 z-50 bg-surface/80 backdrop-blur-[32px] border-b border-white/10 shadow-none">
+<span class="font-headline-md-mobile text-headline-md-mobile text-primary font-black tracking-tighter">Aura Messenger</span>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80">
+<span class="material-symbols-outlined">shield</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-bright overflow-hidden border border-white/10">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A small, circular stylized digital avatar silhouette in dark emerald tones, serving as a secure user profile picture. Minimalist and technical." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDysquE-ga27g7xyBFx9RxgVWPgcRwrKx6t-hCnWnnH4WAoZVajrUjkSqvV0Kkg_FmFhzf3yI15icMgXel_a9OhPLW_GevSutKLW6FWJKwpZpLdZ24uH6veFloZfNm4z_Bz3Cz2c7hg6fwDLX2GgqdsS9aNTuim6MHrxMkA7ENJRIHYbvfM_yoL_tX_9Ttz7CqzxwsxR0BH6-zrsmQGu9xrWgT8Uwb43fGEpwlsOCIGXsSTc8-ERd1yoA">
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 relative z-10 pt-16 md:pt-0 overflow-y-auto h-screen scroll-smooth">
+<div class="max-w-4xl mx-auto px-container-padding-mobile md:px-container-padding-desktop py-stack-lg md:py-[80px]">
+<!-- Page Header -->
+<div class="mb-stack-lg animate-[fadeIn_0.5s_ease-out]">
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface mb-2 tracking-tight">Security Profile</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Manage your encrypted identity protocols and authentication nodes.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Main Account Settings Card -->
+<div class="md:col-span-8 glass-panel rounded-xl p-8 accent-glow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">fingerprint</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">badge</span>
+                        Identity Matrix
+                    </h2>
+<div class="space-y-6 relative z-10">
+<!-- Username Field -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-widest text-xs">USERNAME</label>
+<div class="flex items-center input-trough rounded-lg p-3">
+<span class="material-symbols-outlined text-on-surface-variant mr-3">alternate_email</span>
+<input class="bg-transparent border-none outline-none text-on-surface font-body-md w-full focus:ring-0" readonly="" type="text" value="bidhan012">
+<span class="ml-auto text-primary font-label-sm text-[10px] uppercase border border-primary/30 px-2 py-1 rounded bg-primary/10">Verified</span>
+</div>
+</div>
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-widest text-xs">EMAIL</label>
+<div class="flex items-center input-trough rounded-lg p-3">
+<span class="material-symbols-outlined text-on-surface-variant mr-3">mail</span>
+<input class="bg-transparent border-none outline-none text-on-surface font-body-md w-full focus:ring-0" type="email" value="user@aura.node">
+<button class="ml-auto text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+</div>
+<!-- Status Indicators -->
+<div class="pt-4 border-t border-white/5 flex gap-4">
+<div class="flex items-center gap-2 bg-primary/10 rounded-full px-3 py-1 border border-primary/20">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#4edea3]"></span>
+<span class="font-label-sm text-primary uppercase tracking-wider text-[10px]">Node Active</span>
+</div>
+<div class="flex items-center gap-2 glass-panel rounded-full px-3 py-1">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">verified_user</span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider text-[10px]">E2E Secured</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Actions Column -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<!-- Security Score Widget -->
+<div class="glass-panel rounded-xl p-6 accent-glow flex-1 flex flex-col justify-center items-center text-center">
+<div class="w-24 h-24 rounded-full border-4 border-surface-bright relative flex items-center justify-center mb-4">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="transition-all duration-1000" cx="48" cy="48" fill="none" r="44" stroke="#4edea3" stroke-dasharray="276" stroke-dashoffset="27" stroke-width="4"></circle>
+</svg>
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold">90<span class="text-sm text-on-surface-variant">%</span></span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mb-1">Security Rating</h3>
+<p class="font-label-sm text-on-surface-variant">Optimal Configuration</p>
+</div>
+<!-- Danger Zone -->
+<div class="glass-panel rounded-xl p-6 border-error/20">
+<h3 class="font-label-md text-label-md text-error mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">warning</span>
+                            Session Control
+                        </h3>
+<button class="w-full py-3 rounded-lg btn-danger font-label-md text-label-md font-bold flex items-center justify-center gap-2 group"><span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">logout</span> Logout</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface/80 backdrop-blur-[32px] border-t border-white/10 shadow-none rounded-t-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-white/5 active:scale-95 transition-all p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">lock</span>
+<span class="font-label-sm text-label-sm mt-1 text-[10px]">Vault</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-white/5 active:scale-95 transition-all p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">message</span>
+<span class="font-label-sm text-label-sm mt-1 text-[10px]">Secure</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-white/5 active:scale-95 transition-all p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-label-sm text-label-sm mt-1 text-[10px]">Connect</span>
+</a>
+<!-- Active Tab Mobile -->
+<a class="flex flex-col items-center justify-center bg-primary/10 text-primary rounded-full px-4 py-1 active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined icon-fill">account_circle</span>
+<span class="font-label-sm text-label-sm mt-1 text-[10px] font-bold">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple subtle animation for the background grid to feel "alive"
+        document.addEventListener('DOMContentLoaded', () => {
+            const grids = document.querySelectorAll('.tech-grid');
+            let offset = 0;
+            
+            function animateGrid() {
+                offset += 0.1;
+                grids.forEach(grid => {
+                    grid.style.backgroundPosition = `${offset}px ${offset}px`;
+                });
+                requestAnimationFrame(animateGrid);
+            }
+            
+            // Un-comment to enable subtle grid drift
+            // animateGrid();
+        });
+    </script>
+
+
+
+
+</body></html>

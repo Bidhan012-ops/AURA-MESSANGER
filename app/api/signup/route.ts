@@ -12,25 +12,31 @@ export async function POST(request: NextRequest) {
     const varifyCodeExpire = new Date(Date.now() + 10 * 60 * 1000); 
     try {
         const existingUser = await UserModel.findOne({ $or: [{ email }, { username }] }); 
-        let savedUser = existingUser;  
-        if (existingUser && existingUser.isVerified) {  
-            return NextResponse.json<ApiResponse>({
-                success: false,
-                message: "User with this email or username already exists."
-            }, { status: 400 });
-        }
-        else{
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const passwordToStore = hashedPassword;
-             const newUser = new UserModel({
-            username,
-            email,
-            password: passwordToStore,
-            varifyCode,
-            varifyCodeExpire,
-            isVarified: false
-        });
-         savedUser = await newUser.save();
+        let savedUser = existingUser;
+        if (existingUser) {
+            if (existingUser.isVerified) {
+                return NextResponse.json<ApiResponse>({
+                    success: false,
+                    message: "User with this email or username already exists."
+                }, { status: 400 });
+            } else {
+                const hashedPassword = await bcrypt.hash(password, 10);
+                existingUser.password = hashedPassword;
+                existingUser.varifyCode = varifyCode;
+                existingUser.varifyCodeExpire = varifyCodeExpire;
+                savedUser = await existingUser.save();
+            }
+        } else {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const newUser = new UserModel({
+                username,
+                email,
+                password: hashedPassword,
+                varifyCode,
+                varifyCodeExpire,
+                isVerified: false
+            });
+            savedUser = await newUser.save();
         }
         const emailResponse = await sendVarificationEmail(email, username, varifyCode);
         if (!emailResponse.success) {
@@ -45,6 +51,7 @@ export async function POST(request: NextRequest) {
             data:savedUser
         }, { status: 201 });
     } catch (error) {
+        console.error("Signup Route Error:", error);
         return NextResponse.json<ApiResponse>({
             success: false,
             message: "Internal server error."

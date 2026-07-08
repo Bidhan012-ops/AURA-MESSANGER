@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/lib/dbConnect";
 import UserModel from "@/model/user";
-import { success } from "zod";
 import { ApiResponse } from "@/types/Apiresponce";
 export async function POST(request:NextRequest){
     const {username}= await request.json();
@@ -18,5 +17,5 @@ export async function POST(request:NextRequest){
         success:true,
         message:"The user is found",
         isAccepting:user.isaccepting
-    },{status:200})
+    },{status:200});
 }
