@@ -86,138 +86,96 @@ const page = () => {
         __html: `
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
-
+        
         body {
             background-color: #050505;
             color: #e0e3e5;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
-
+        
         .glass-panel {
-            background-color: rgba(16, 20, 21, 0.4);
+            background: rgba(16, 20, 21, 0.4);
             backdrop-filter: blur(32px);
             -webkit-backdrop-filter: blur(32px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        
+
         .glass-input {
-            background-color: rgba(255, 255, 255, 0.03);
+            background: rgba(36, 42, 44, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
-        
-        .glass-input:focus-within {
-            background-color: rgba(255, 255, 255, 0.05);
+
+        .glass-input:focus, .glass-input:focus-within {
+            outline: none;
             border-color: rgba(255, 255, 255, 0.4);
             border-left: 2px solid #4edea3;
+            background: rgba(36, 42, 44, 0.5);
         }
-        
-        .emerald-glow {
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
-        }
-        
-        .btn-emerald {
+
+        .btn-primary {
             background-color: #4edea3;
             color: #002113;
             transition: all 0.3s ease;
         }
-        
-        .btn-emerald:hover {
+
+        .btn-primary:hover {
             box-shadow: 0 0 15px rgba(78, 222, 163, 0.4);
             transform: translateY(-1px);
         }
 
-        .tech-bg {
+        .bg-technical {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
             background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLupwhd6nsbKIKfPeQ1gPS9VGBkRRdxUUeubg32MhpGMNz4_0HyXgJQUTKn-9BqWApEjMPXBWYD_CfFSIRMlQ_qIzUjTDFDifX-1ZzepUfm3qDrDu-UsbVimunR_wMzzmky6cGouOIrb2WtP-E4SunLmTlPTnOiidijC5sD73SNb8TGnIrpCdum9dwM06wfKk8GANTJjdejUuGA-u4x8apKu6rgbsu_CGhp8J_99AeP7SLKHY5OhrbgRwj4');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-        }
-        
-        .tech-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at center, transparent 0%, #050505 100%);
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0),
-                rgba(255, 255, 255, 0) 50%,
-                rgba(0, 0, 0, 0.1) 50%,
-                rgba(0, 0, 0, 0.1)
-            );
-            background-size: 100% 4px;
-            z-index: -1;
-            pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.6;
         }
         `
       }} />
-      <div className="bg-background text-[#e0e3e5] antialiased min-h-screen flex items-center justify-center font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px]">
-        {/* Background Images */}
-        <div className="tech-bg"></div>
-        <div className="tech-overlay"></div>
-        <div className="scanlines"></div>
+      <div className="min-h-screen flex flex-col antialiased relative">
+        <div className="bg-technical"></div>
+        
+        <Link href="/" className="absolute top-6 left-6 md:top-10 md:left-10 z-20 flex items-center gap-2 text-gray-400 hover:text-[#4edea3] transition-colors font-['Plus_Jakarta_Sans'] text-sm font-medium">
+          <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+          <span>Back</span>
+        </Link>
 
-        {/* Main Container */}
-        <div className="w-full max-w-[440px] px-5 md:px-0 z-10 mt-8">
+        <main className="flex-grow flex items-center justify-center p-5 md:p-10 relative z-10">
+          <div className="glass-panel w-full max-w-[480px] rounded-xl p-8 md:p-10 flex flex-col gap-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-50"></div>
 
-          {/* Brand Header */}
-          <div className="text-center mb-8">
-            <span className="material-symbols-outlined text-[48px] text-[#4edea3] mb-2" style={{ fontVariationSettings: "'FILL' 1", filter: "drop-shadow(0 0 10px rgba(78,222,163,0.3))" }}>
-              shield_lock
-            </span>
-            <h1 className="font-['Plus_Jakarta_Sans'] text-[24px] md:text-[32px] leading-[32px] md:leading-[40px] font-semibold tracking-[-0.01em] text-white">
-              Create Secure Access
-            </h1>
-            <p className="font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-normal text-gray-400 mt-2">
-              Aura Messenger Identity Initialization
-            </p>
-          </div>
-
-          {/* Glass Form Container */}
-          <div className="glass-panel rounded-xl p-8 emerald-glow relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#4edea3]/50 to-transparent"></div>
+            <div className="flex flex-col gap-2 items-center text-center">
+              <div className="w-12 h-12 rounded-lg bg-[#2b2d31] flex items-center justify-center border border-white/10 mb-2 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+                <span className="material-symbols-outlined text-[#4edea3]" style={{ fontVariationSettings: "'FILL' 1", fontSize: "28px" }}>lock</span>
+              </div>
+              <h1 className="font-['Plus_Jakarta_Sans'] text-[32px] leading-[40px] tracking-[-0.01em] font-semibold text-[#e0e3e5]">Create Secure Access</h1>
+              <p className="font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-normal text-gray-400">Aura Messenger Identity Initialization</p>
+            </div>
 
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
                 {/* Username Field */}
                 <FormField
                   control={form.control}
                   name="username"
                   render={({ field }) => (
-                    <FormItem className="space-y-0">
-                      <div className="flex justify-between items-center mb-2">
-                        <FormLabel className="block font-['Plus_Jakarta_Sans'] text-[12px] leading-[16px] font-medium text-gray-400 uppercase tracking-widest">
-                          Username
-                        </FormLabel>
+                    <FormItem className="flex flex-col gap-2 space-y-0">
+                      <div className="flex justify-between w-full items-center">
+                        <FormLabel className="font-['Plus_Jakarta_Sans'] text-[14px] leading-[20px] tracking-[0.05em] font-semibold text-[#e0e3e5]">Username</FormLabel>
                         {ischecking && <Loader2 className="w-4 h-4 animate-spin text-[#4edea3]" />}
                       </div>
                       <FormControl>
-                        <div className="glass-input rounded flex items-center h-12 px-4 group">
-                          <span className="material-symbols-outlined text-gray-500 group-focus-within:text-[#4edea3] text-[20px] mr-2 transition-colors">
-                            person
-                          </span>
+                        <div className="relative">
+                          <span className="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 select-none">person</span>
                           <input
                             {...field}
                             onChange={(e) => {
@@ -226,16 +184,16 @@ const page = () => {
                             }}
                             type="text"
                             placeholder="Enter your identity"
-                            className="w-full bg-transparent border-none text-white focus:ring-0 focus:outline-none font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-normal placeholder:text-gray-500"
+                            className="glass-input w-full h-12 pl-10 pr-4 rounded-lg font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-normal text-white placeholder:text-gray-500"
                           />
                         </div>
                       </FormControl>
-                      <FormMessage />
                       {usernamemessage && (
                         <p className={`text-sm mt-1 font-['Plus_Jakarta_Sans'] ${usernamemessage.includes("available") ? "text-[#4edea3]" : "text-red-500"}`}>
                           {usernamemessage}
                         </p>
                       )}
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -245,20 +203,18 @@ const page = () => {
                   control={form.control}
                   name="email"
                   render={({ field }) => (
-                    <FormItem className="space-y-0">
-                      <FormLabel className="block font-['Plus_Jakarta_Sans'] text-[12px] leading-[16px] font-medium text-gray-400 uppercase tracking-widest mb-2 mt-4">
-                        Secure Email
-                      </FormLabel>
+                    <FormItem className="flex flex-col gap-2 space-y-0">
+                      <div className="flex justify-between w-full">
+                        <FormLabel className="font-['Plus_Jakarta_Sans'] text-[14px] leading-[20px] tracking-[0.05em] font-semibold text-[#e0e3e5]">Secure Email</FormLabel>
+                      </div>
                       <FormControl>
-                        <div className="glass-input rounded flex items-center h-12 px-4 group">
-                          <span className="material-symbols-outlined text-gray-500 group-focus-within:text-[#4edea3] text-[20px] mr-2 transition-colors">
-                            mail
-                          </span>
+                        <div className="relative">
+                          <span className="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 select-none">mail</span>
                           <input
                             {...field}
                             type="email"
                             placeholder="communications@domain.com"
-                            className="w-full bg-transparent border-none text-white focus:ring-0 focus:outline-none font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-normal placeholder:text-gray-500"
+                            className="glass-input w-full h-12 pl-10 pr-4 rounded-lg font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-normal text-white placeholder:text-gray-500"
                           />
                         </div>
                       </FormControl>
@@ -272,28 +228,25 @@ const page = () => {
                   control={form.control}
                   name="password"
                   render={({ field }) => (
-                    <FormItem className="space-y-0">
-                      <FormLabel className="block font-['Plus_Jakarta_Sans'] text-[12px] leading-[16px] font-medium text-gray-400 uppercase tracking-widest mb-2 mt-4">
-                        Passphrase
-                      </FormLabel>
+                    <FormItem className="flex flex-col gap-2 space-y-0">
+                      <div className="flex justify-between w-full">
+                        <FormLabel className="font-['Plus_Jakarta_Sans'] text-[14px] leading-[20px] tracking-[0.05em] font-semibold text-[#e0e3e5]">Passphrase</FormLabel>
+                      </div>
                       <FormControl>
-                        <div className="glass-input rounded flex items-center h-12 px-4 group">
-                          <span className="material-symbols-outlined text-gray-500 group-focus-within:text-[#4edea3] text-[20px] mr-2 transition-colors">
-                            key
-                          </span>
+                        <div className="relative">
+                          <span className="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 select-none">key</span>
                           <input
                             {...field}
                             type={showPassword ? "text" : "password"}
                             placeholder="••••••••••••"
-                            className="w-full bg-transparent border-none text-white focus:ring-0 focus:outline-none font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-normal placeholder:text-gray-500 font-mono tracking-widest"
+                            className="glass-input w-full h-12 pl-10 pr-10 rounded-lg font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-normal text-white placeholder:text-gray-500 tracking-widest"
                           />
                           <button
                             type="button"
                             onClick={() => setshowPassword(!showPassword)}
-                            aria-label="Toggle password visibility"
-                            className="ml-2 text-gray-500 hover:text-white focus:outline-none transition-colors"
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-white transition-colors"
                           >
-                            <span className="material-symbols-outlined text-[20px]">
+                            <span className="material-symbols-outlined select-none">
                               {showPassword ? 'visibility_off' : 'visibility'}
                             </span>
                           </button>
@@ -304,49 +257,32 @@ const page = () => {
                   )}
                 />
 
-                {/* Submit Button */}
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={issubmitting}
-                    className="btn-emerald w-full rounded h-12 font-['Plus_Jakarta_Sans'] text-[14px] leading-[20px] tracking-[0.05em] font-semibold flex items-center justify-center relative overflow-hidden"
-                  >
-                    <span className="relative z-10 flex items-center">
-                      {issubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : (
-                        <>
-                          Initialize Access
-                          <span className="material-symbols-outlined ml-2 text-[18px]">
-                            arrow_forward
-                          </span>
-                        </>
-                      )}
-                    </span>
+                <div className="flex flex-col gap-4 mt-2">
+                  <button type="submit" disabled={issubmitting} className="btn-primary w-full h-12 rounded-lg font-['Plus_Jakarta_Sans'] text-[14px] leading-[20px] tracking-[0.05em] font-semibold flex items-center justify-center gap-2">
+                    {issubmitting ? <Loader2 className="animate-spin" /> : (
+                      <>Initialize Access <span className="material-symbols-outlined text-[18px]">arrow_forward</span></>
+                    )}
                   </button>
                 </div>
               </form>
             </Form>
 
-            {/* Secondary Action */}
-            <div className="mt-4 text-center">
+            <div className="text-center mt-2">
               <p className="font-['Plus_Jakarta_Sans'] text-[16px] leading-[24px] font-normal text-gray-400">
-                Identity already established?{" "}
-                <Link href="/signin" className="text-[#4edea3] hover:text-[#78f1bc] transition-colors border-b border-[#4edea3]/30 hover:border-[#4edea3] pb-[1px]">
-                  Signin
-                </Link>
+                Identity already established? <Link href="/signin" className="text-[#4edea3] hover:text-[#78f1bc] transition-colors font-['Plus_Jakarta_Sans'] text-[14px] leading-[20px] tracking-[0.05em] font-semibold">Signin</Link>
               </p>
             </div>
 
             {/* Technical Status Footer */}
-            <div className="mt-8 pt-2 border-t border-white/5 flex justify-between items-center text-[10px] text-gray-500 font-mono uppercase tracking-widest">
+            <div className="mt-2 pt-4 border-t border-white/5 flex justify-between items-center text-[10px] text-gray-500 font-mono uppercase tracking-widest">
               <span className="flex items-center">
                 <span className="w-1.5 h-1.5 bg-[#4edea3] rounded-full mr-2 shadow-[0_0_5px_#4edea3]"></span>
                 Node Active
               </span>
               <span>E2E Encrypted</span>
             </div>
-
           </div>
-        </div>
+        </main>
       </div>
     </>
   );
