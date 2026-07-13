@@ -9,9 +9,12 @@ export default function Dashboard() {
       <nav className="fixed top-0 w-full z-50 backdrop-blur-[64px] dark:bg-surface/30 border-b bg-surface/10 border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
         <div className="flex justify-between items-center px-container-padding-desktop py-4 w-full max-w-screen-2xl mx-auto">
           {/* Brand */}
-          <div className="flex items-center gap-2">
-            <img alt="Aura Messenger Logo" className="w-8 h-8 rounded-DEFAULT" src="https://lh3.googleusercontent.com/aida/AP1WRLvgY66f_YNsPWOQzuaRQeeXEnC0luhKw72qfsgV4yRuUbp1Djs7Dl_bIgESa3UlndcckN6GWXqJqfmpj7X6Zz5nOuEd-NXytAH_v65xdpsCNBa5yyHvnigZBFTmVFM_Y1fFxpwweqhJK00AukbJOA2JlhouHxEaZ35wBQ7dIOaZBXTjYkoIa9vECyaEsIzYhGbg4UovUXwOpp9JA-6uigeK5S_nx_5HXPBY8sVbbOxVQqvbKyDYcs9Ds1XJ" />
-            <span className="text-headline-md font-headline-md font-bold tracking-tight text-primary dark:text-primary">Aura Messenger</span>
+          <div className="flex items-center gap-4">
+            {/* Minimal Logo (Shield Icon) */}
+            <div className="w-8 h-8 rounded-md bg-[#4edea3]/10 flex items-center justify-center border border-[#4edea3]/20">
+              <span className="material-symbols-outlined text-[#4edea3] text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>security</span>
+            </div>
+            <span className="font-['Plus_Jakarta_Sans'] text-[18px] md:text-[20px] font-bold text-[#4edea3] tracking-tight">Aura Messenger</span>
           </div>
           {/* Navigation Links (Desktop) */}
           <div className="hidden md:flex gap-gutter items-center">
